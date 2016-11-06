@@ -66,7 +66,6 @@
   sudo: yes
   gem:
     name=rake
-    version=10.1.1
     user_install=no
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
