@@ -138,3 +138,17 @@
     RAILS_ENV: production
   when:
     result_database_yml|changed
+
+- name: Redmine Kanban git Clone
+  sudo: yes
+  git:
+    repo=https://github.com/farend/redmine_theme_farend_basic.git
+    dest={{ redmine_dir }}/plugins/redmine_backlogs
+
+# - name: Redmine Kanban Plugin Install
+#   sudo: yes
+#   command:
+#     chdir={{ redmine_dir }}
+#   environment:
+#     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+#     RAILS_ENV: production
