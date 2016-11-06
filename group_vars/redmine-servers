@@ -16,7 +16,7 @@ redmine_dir_owner: www-data:www-data
 redmine_font_path: /usr/share/fonts/truetype/takao-gothic/TakaoPGothic.ttf
 
 # ダウンロードするRubyのソースコード
-ruby_url_dir: https://cache.ruby-lang.org/pub/ruby/2.2
+ruby_url_dir: https://cache.ruby-lang.org/pub/ruby/2.0
 ruby_archive_version: ruby-2.0.0-p648
 ruby_archive_ext: tar.bz2
 ruby_archive_name: "{{ ruby_archive_version }}.{{ ruby_archive_ext }}"
