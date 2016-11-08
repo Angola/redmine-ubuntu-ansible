@@ -78,16 +78,16 @@
   when:
     result_database_yml|changed
 
-- name: farend_basicテーマのダウンロード
+- name: gitmikeテーマのダウンロード
   sudo: yes
   git:
-    repo=https://github.com/farend/redmine_theme_farend_basic.git
-    dest={{ redmine_dir }}/public/themes/farend_basic
+    repo=https://github.com/makotokw/redmine-theme-gitmike.git
+    dest={{ redmine_dir }}/public/themes/gitmike
 
-- name: テーマをfarend_basicに切り替え
+- name: テーマをgitmikeに切り替え
   sudo: yes
   command:
-    bundle exec rails r 'Setting["ui_theme"]="farend_basic"'
+    bundle exec rails r 'Setting["ui_theme"]="gitmike"'
     chdir={{ redmine_dir }}
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
@@ -139,16 +139,31 @@
   when:
     result_database_yml|changed
 
-- name: Redmine Kanban git Clone
+- name: Redmine Backlog git Clone
   sudo: yes
   git:
-    repo=https://github.com/farend/redmine_theme_farend_basic.git
+    repo={{ redmine_backlog }}
     dest={{ redmine_dir }}/plugins/redmine_backlogs
+    version=feature/redmine3
 
-# - name: Redmine Kanban Plugin Install
-#   sudo: yes
-#   command:
-#     chdir={{ redmine_dir }}
-#   environment:
-#     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
-#     RAILS_ENV: production
+- name: Redmine Kanban Plugin Install
+  sudo: yes
+  command:
+    bundle install --without development test --path vendor/bundle
+    bundle install --no-deployment
+    dest={{ redmine_dir }}/plugins/redmine_backlogs
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+
+- name: Pluguin データベースのマイグレーション
+  sudo: yes
+  command:
+    bundle exec rake db:migrate
+    bundle exec rake tmp:cache:clear
+    bundle exec rake tmp:sessions:clear
+    bundle exec rake redmine:backlogs:install
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
