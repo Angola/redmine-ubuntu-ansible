@@ -149,7 +149,7 @@
 - name: Redmine Kanban Plugin Install
   sudo: yes
   command:
-    bundle exec rake redmine:backlogs:install
+    bundle exec rake redmine:backlogs:install  --path vendor/bundle
     dest={{ redmine_dir }}
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
