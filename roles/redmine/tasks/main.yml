@@ -149,21 +149,8 @@
 - name: Redmine Kanban Plugin Install
   sudo: yes
   command:
-    bundle install --without development test --path vendor/bundle
-    bundle install --no-deployment
-    dest={{ redmine_dir }}/plugins/redmine_backlogs
-  environment:
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
-    RAILS_ENV: production
-
-- name: Pluguin データベースのマイグレーション
-  sudo: yes
-  command:
-    bundle exec rake db:migrate
-    bundle exec rake tmp:cache:clear
-    bundle exec rake tmp:sessions:clear
+    dest={{ redmine_dir }}
     bundle exec rake redmine:backlogs:install
-    chdir={{ redmine_dir }}
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
     RAILS_ENV: production
