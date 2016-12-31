@@ -1,5 +1,18 @@
-# redmine-ubuntu-ansible
+# redmine-ubuntu-ansible-backlogs
 
+## 概要
+redmine-ubuntu-ansible プロジェクトからfork。
+Backlogsプラグインを自動的にインストール。
+
+## プラグイン
+- Redmine Backlogs https://github.com/backlogs/redmine_backlogs/tree/feature/redmine3
+
+## テーマ
+- gitmake https://github.com/makotokw/redmine-theme-gitmike.git
+
+*****
+
+# redmine-ubuntu-ansible
 
 最小構成でインストールしたUbuntu ServerにRedmineを自動インストールするためのAnsibleプレイブックです。
 
