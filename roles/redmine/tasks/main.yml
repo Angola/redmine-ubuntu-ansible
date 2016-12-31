@@ -139,20 +139,9 @@
   when:
     result_database_yml|changed
 
-- name: Redmine Backlog git Clone
+- name: Redmine Backlogs git Clone
   sudo: yes
   git:
     repo={{ redmine_backlog }}
     dest={{ redmine_dir }}/plugins/redmine_backlogs
     version=feature/redmine3
-
-- name: Redmine Kanban Plugin Install
-  sudo: yes
-  command:
-    bundle exec rake redmine:backlogs:install
-    dest={{ redmine_dir }}/plugins/redmine_backlogs
-  environment:
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
-    RAILS_ENV: production
-  when:
-    result_database_yml|changed
