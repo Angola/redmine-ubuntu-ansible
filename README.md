@@ -1,7 +1,7 @@
 # redmine-ubuntu-ansible-backlogs
 
 ## 概要
-redmine-ubuntu-ansible プロジェクトからfork。　　
+redmine-ubuntu-ansible プロジェクトからfork。  
 Backlogsプラグインを自動的にインストール。
 
 ## プラグイン
