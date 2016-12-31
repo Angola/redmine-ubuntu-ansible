@@ -150,7 +150,7 @@
   sudo: yes
   command:
     bundle exec rake redmine:backlogs:install
-    dest={{ redmine_dir }}
+    dest={{ redmine_dir }}/plugins/redmine_backlogs
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
     RAILS_ENV: production
